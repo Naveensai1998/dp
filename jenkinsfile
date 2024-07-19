@@ -1,0 +1,14 @@
+pipeline {
+    agent {"BMS-BEA2-Common"}
+
+    stages {
+        stage('Get IP Address') {
+            steps {
+                script {
+                    def ip = sh(script: "hostname -I | cut -d' ' -f1", returnStdout: true).trim()
+                    echo "IP Address of the Jenkins Agent: ${ip}"
+                }
+            }
+        }
+    }
+}
